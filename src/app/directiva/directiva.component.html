@@ -1,0 +1,16 @@
+<!--Habilita el boton o lo deshabilita-->
+<!--? = return false: sino true-->
+<!--En el string de ocultar o mostrar|| si habilitar es igual a true entonces ocultar de lo contrario mostrar-->
+<!--<button type="button" (click)="habilitar = (habilitar==true)? false: true" class="btn btn-primary my-3">{{ habilitar ==true? 'Ocultar': 'Mostrar'}}</button>-->
+<!--Lo mejor es hacer un metodo en el componente de directiva-->
+<button type="button" (click)="setHabilitar()" class="btn btn-primary my-3">{{ habilitar ==true? 'Ocultar': 'Mostrar'}}</button>
+
+<div class="card ">
+    <div class="card-header">
+        Listado de cursos
+    </div>
+    <!--Habilita el boton o lo deshabilita-->
+    <ul class="list-group" *ngIf="habilitar == true">
+        <li class="list-group-item" *ngFor="let curso of listaCurso">{{curso}}</li>
+    </ul>
+</div>

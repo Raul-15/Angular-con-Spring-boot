@@ -1,0 +1,30 @@
+<!--Crea un scrol cuando la paginacion es mas de 20 o 30 paginas, no muy efectiva "style="overflow: scroll;""-->
+<ul *ngIf="paginas?.length > 0" class="pagination">
+
+    <li class="page-item" *ngIf="paginador.number > 0">
+        <a class="page-link" [routerLink]="['/clientes/pages', paginador.number-1]">&laquo;</a>
+    </li>
+
+    <!--<li [ngClass]="paginador.number == 0?'disabled page-item': 'page-item'">-->
+    <li [ngClass]="paginador.first?'disabled page-item': 'page-item'">
+        <a class="page-link" [routerLink]="['/clientes/pages',0]">Primera</a>
+
+    </li>
+    <!-- Para deshabilitar el cuadrado de pagina-->
+    <!--disabled , active-->
+    <li class="page-item" *ngFor="let pagina of paginas" [ngClass]="pagina-1 == paginador.number?'active':''">
+        <!--Paginador tiene el totalPages-->
+        <span class="page-link" *ngIf="pagina-1 == paginador.number">{{pagina}}</span>
+        <a *ngIf="pagina-1 != paginador.number" class="page-link" [routerLink]="['/clientes/pages',pagina-1]">{{pagina}}</a>
+    </li>
+
+    <!--<li [ngClass]="paginador.number == paginador.totalPages-1?'disabled page-item': 'page-item'">-->
+    <li [ngClass]="paginador.last?'disabled page-item': 'page-item'">
+        <a class="page-link" [routerLink]="['/clientes/pages',paginador.totalPages-1]">Ultima</a>
+
+    </li>
+
+    <li class="page-item" *ngIf="paginador.number < paginador.totalPages-1">
+        <a class="page-link" [routerLink]="['/clientes/pages', paginador.number+1]">&raquo;</a>
+    </li>
+</ul>
